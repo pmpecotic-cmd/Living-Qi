@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Qi — What the Body Knows</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #b3361c;
+    --red-dark: #8a2814;
+    --red-deep: #5a1206;
+    --gold: #f5d98a;
+    --gold-dim: #c9a84b;
+    --gold-pale: #f0d098;
+    --cream: #f7e4b0;
+    --mid: rgba(245,217,138,0.55);
+    --dim: rgba(245,217,138,0.22);
+  }
+
+  html, body { min-height: 100vh; }
+
+  body {
+    background: var(--red);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '氣';
+    position: fixed;
+    font-size: 85vw;
+    color: rgba(245,217,138,0.07);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -44%);
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 75% 75% at 50% 50%, transparent 25%, rgba(70,12,2,0.6) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: rise 2s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header-qi {
+    font-size: 64px;
+    color: var(--gold);
+    opacity: 0.75;
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+    animation: breathe 5s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.95; }
+  }
+
+  .header-title {
+    font-size: 62px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .header-tagline {
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-pale);
+    letter-spacing: 1px;
+  }
+
+  .header-sub {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+
+  .rule {
+    width: 70px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 28px auto 0;
+  }
+
+  /* Cards */
+  .cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 980px;
+    width: 100%;
+    animation: rise 2s cubic-bezier(0.16,1,0.3,1) 0.15s both;
+  }
+
+  .card {
+    flex: 1;
+    min-width: 265px;
+    max-width: 305px;
+    background: rgba(0,0,0,0.22);
+    border: 1px solid rgba(245,217,138,0.16);
+    border-radius: 2px;
+    padding: 40px 30px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245,217,138,0.03);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .card:hover {
+    border-color: rgba(245,217,138,0.42);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+
+  .card:hover::after { opacity: 1; }
+
+  .card-badge {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  .card-icon {
+    font-size: 38px;
+    color: var(--gold);
+    opacity: 0.75;
+    line-height: 1;
+    margin-bottom: 22px;
+  }
+
+  .card-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,217,138,0.42);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 28px;
+  }
+
+  .card-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(245,217,138,0.12);
+    margin-bottom: 20px;
+  }
+
+  .card-cta {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .card:hover .card-cta { color: var(--gold); }
+
+  /* Vimeo card special — shows password inline */
+  .vimeo-detail {
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(245,217,138,0.35);
+    letter-spacing: 1px;
+  }
+
+  .vimeo-detail strong {
+    color: rgba(245,217,138,0.55);
+    font-style: normal;
+    letter-spacing: 2px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(60,10,2,0.88);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    backdrop-filter: blur(6px);
+  }
+
+  .modal-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--red-dark);
+    border: 1px solid rgba(245,217,138,0.22);
+    border-radius: 2px;
+    padding: 52px 44px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    transform: translateY(24px);
+    transition: transform 0.4s;
+  }
+
+  .modal-overlay.show .modal { transform: translateY(0); }
+
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    font-size: 22px;
+    color: var(--dim);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-qi {
+    font-size: 42px;
+    color: var(--gold);
+    opacity: 0.6;
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .modal-title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .modal input[type="password"] {
+    width: 100%;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(245,217,138,0.22);
+    border-radius: 1px;
+    padding: 15px 20px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 8px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .modal input:focus {
+    border-color: rgba(245,217,138,0.55);
+    background: rgba(0,0,0,0.35);
+  }
+
+  .modal input::placeholder {
+    letter-spacing: 2px;
+    color: rgba(245,217,138,0.18);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .enter-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(245,217,138,0.28);
+    border-radius: 1px;
+    padding: 13px 20px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+  }
+
+  .enter-btn:hover {
+    background: rgba(245,217,138,0.07);
+    border-color: rgba(245,217,138,0.55);
+  }
+
+  .modal-error {
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255,170,140,0.8);
+    margin-top: 14px;
+    min-height: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Success */
+  .success-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--red-deep);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s;
+  }
+
+  .success-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .success-text {
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-pale);
+    letter-spacing: 3px;
+  }
+
+  .footer {
+    margin-top: 56px;
+    text-align: center;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--dim);
+    letter-spacing: 2px;
+    animation: rise 2s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+  }
+
+  @media (max-width: 640px) {
+    .header-title { font-size: 44px; }
+    .card { min-width: 100%; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="success-overlay" id="successOverlay">
+  <div class="success-text">Opening&hellip;</div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#215;</button>
+    <span class="modal-qi">氣</span>
+    <p class="modal-title">Investor Brief &nbsp;&middot;&nbsp; Confidential</p>
+    <input type="password" id="pwd" placeholder="enter password" autocomplete="off" />
+    <button class="enter-btn" onclick="checkPassword()">Enter</button>
+    <p class="modal-error" id="modalError"></p>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <span class="header-qi">氣</span>
+    <h1 class="header-title">Living Qi</h1>
+    <p class="header-tagline">What the Body Knows</p>
+    <p class="header-sub">A Feature Documentary &nbsp;&middot;&nbsp; Australia – China Co-Production &nbsp;&middot;&nbsp; In Development 2026</p>
+    <div class="rule"></div>
+  </div>
+
+  <div class="cards">
+
+    <!-- Concept Document -->
+    <a class="card" href="Living_Qi_Concept__standalone___1_.html" target="_blank">
+      <div class="card-icon">文</div>
+      <p class="card-label">The Vision</p>
+      <h2 class="card-title">Concept Document</h2>
+      <p class="card-desc">The story, the film, and the cultural proposition — exploring how China's ancient wisdom is shaping how modern Australia moves, heals, and ages.</p>
+      <div class="card-divider"></div>
+      <p class="card-cta">Open Document &rarr;</p>
+    </a>
+
+    <!-- Sizzle Reel -->
+    <a class="card" href="https://vimeo.com/1187191900" target="_blank">
+      <div class="card-icon">▶</div>
+      <p class="card-label">The Film</p>
+      <h2 class="card-title">Sizzle Reel</h2>
+      <p class="card-desc">Grandmaster Gary Khor in Centennial Park, Sydney — a glimpse of what Living Qi will become.</p>
+      <div class="card-divider"></div>
+      <p class="card-cta">Watch on Vimeo &rarr;</p>
+      <p class="vimeo-detail">Password &nbsp;<strong>LIVINGQI</strong></p>
+    </a>
+
+    <!-- Investor Brief -->
+    <div class="card" onclick="openModal()">
+      <span class="card-badge">&#128274; Confidential</span>
+      <div class="card-icon">◆</div>
+      <p class="card-label">For Investors</p>
+      <h2 class="card-title">Investor Brief</h2>
+      <p class="card-desc">Budget, financing structure, investment proposition, legacy and impact strategy. Available on request — password protected.</p>
+      <div class="card-divider"></div>
+      <p class="card-cta">Enter Password &rarr;</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    &copy; Living Qi 2026 &nbsp;&middot;&nbsp; Turningpoint Solutions Pty Ltd &nbsp;&middot;&nbsp; ppecotic@tpgroup.co
+  </div>
+
+</div>
+
+<script>
+  const PASSWORD = 'LIVINGQI';
+  const BRIEF = 'Living_Qi_Investor_Brief__standalone___8_.html';
+
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('show');
+    setTimeout(() => document.getElementById('pwd').focus(), 300);
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.getElementById('pwd').value = '';
+    document.getElementById('modalError').textContent = '';
+  }
+
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.getElementById('pwd').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+    document.getElementById('modalError').textContent = '';
+  });
+
+  function checkPassword() {
+    const val = document.getElementById('pwd').value.trim().toUpperCase();
+    if (val === PASSWORD) {
+      closeModal();
+      document.getElementById('successOverlay').classList.add('show');
+      setTimeout(() => { window.location.href = BRIEF; }, 1400);
+    } else {
+      document.getElementById('modalError').textContent = 'Incorrect password. Please try again.';
+      document.getElementById('pwd').value = '';
+      document.getElementById('pwd').focus();
+    }
+  }
+</script>
+
+</body>
+</html>
