@@ -17,8 +17,8 @@
     --gold-dim: #c9a84b;
     --gold-pale: #f0d098;
     --cream: #f7e4b0;
-    --mid: rgba(245,217,138,0.55);
-    --dim: rgba(245,217,138,0.22);
+    --mid: rgba(245,217,138,0.65);
+    --dim: rgba(245,217,138,0.28);
   }
 
   html, body { min-height: 100vh; }
@@ -60,12 +60,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 24px 60px;
+    padding: 80px 32px 60px;
   }
 
   .header {
     text-align: center;
-    margin-bottom: 56px;
+    margin-bottom: 64px;
     animation: rise 2s cubic-bezier(0.16,1,0.3,1) forwards;
   }
 
@@ -75,11 +75,11 @@
   }
 
   .header-qi {
-    font-size: 64px;
+    font-size: 80px;
     color: var(--gold);
     opacity: 0.75;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: block;
     animation: breathe 5s ease-in-out infinite;
   }
@@ -90,16 +90,16 @@
   }
 
   .header-title {
-    font-size: 62px;
+    font-size: 84px;
     font-weight: 400;
     color: var(--cream);
     letter-spacing: 4px;
     line-height: 1;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .header-tagline {
-    font-size: 19px;
+    font-size: 28px;
     font-style: italic;
     font-weight: 300;
     color: var(--gold-pale);
@@ -107,39 +107,38 @@
   }
 
   .header-sub {
-    font-size: 11px;
+    font-size: 15px;
     letter-spacing: 4px;
     color: var(--mid);
     text-transform: uppercase;
-    margin-top: 18px;
+    margin-top: 20px;
   }
 
   .rule {
     width: 70px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-    margin: 28px auto 0;
+    margin: 32px auto 0;
   }
 
-  /* Cards */
   .cards {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 980px;
+    max-width: 1100px;
     width: 100%;
     animation: rise 2s cubic-bezier(0.16,1,0.3,1) 0.15s both;
   }
 
   .card {
     flex: 1;
-    min-width: 265px;
-    max-width: 305px;
+    min-width: 290px;
+    max-width: 330px;
     background: rgba(0,0,0,0.22);
-    border: 1px solid rgba(245,217,138,0.16);
+    border: 1px solid rgba(245,217,138,0.18);
     border-radius: 2px;
-    padding: 40px 30px 32px;
+    padding: 44px 34px 36px;
     text-align: center;
     cursor: pointer;
     transition: all 0.4s;
@@ -170,44 +169,44 @@
 
   .card-badge {
     position: absolute;
-    top: 14px;
-    right: 16px;
-    font-size: 10px;
+    top: 16px;
+    right: 18px;
+    font-size: 13px;
     letter-spacing: 2px;
     color: var(--dim);
     text-transform: uppercase;
   }
 
   .card-icon {
-    font-size: 38px;
+    font-size: 48px;
     color: var(--gold);
     opacity: 0.75;
     line-height: 1;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
   }
 
   .card-label {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 4px;
     color: var(--mid);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .card-title {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 400;
     color: var(--cream);
     letter-spacing: 1px;
-    margin-bottom: 16px;
-    line-height: 1.3;
+    margin-bottom: 18px;
+    line-height: 1.2;
   }
 
   .card-desc {
-    font-size: 14px;
+    font-size: 18px;
     font-style: italic;
     font-weight: 300;
-    color: rgba(245,217,138,0.42);
+    color: rgba(245,217,138,0.48);
     line-height: 1.7;
     flex: 1;
     margin-bottom: 28px;
@@ -217,11 +216,11 @@
     width: 100%;
     height: 1px;
     background: rgba(245,217,138,0.12);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
   .card-cta {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 4px;
     color: var(--gold-dim);
     text-transform: uppercase;
@@ -230,19 +229,18 @@
 
   .card:hover .card-cta { color: var(--gold); }
 
-  /* Vimeo card special — shows password inline */
   .vimeo-detail {
-    margin-top: 10px;
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 15px;
     font-style: italic;
-    color: rgba(245,217,138,0.35);
+    color: rgba(245,217,138,0.4);
     letter-spacing: 1px;
   }
 
   .vimeo-detail strong {
-    color: rgba(245,217,138,0.55);
+    color: rgba(245,217,138,0.65);
     font-style: normal;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
   }
 
   /* Modal */
@@ -269,8 +267,8 @@
     background: var(--red-dark);
     border: 1px solid rgba(245,217,138,0.22);
     border-radius: 2px;
-    padding: 52px 44px;
-    max-width: 380px;
+    padding: 56px 48px;
+    max-width: 420px;
     width: 90%;
     text-align: center;
     position: relative;
@@ -282,8 +280,8 @@
 
   .modal-close {
     position: absolute;
-    top: 14px; right: 18px;
-    font-size: 22px;
+    top: 16px; right: 20px;
+    font-size: 26px;
     color: var(--dim);
     cursor: pointer;
     background: none;
@@ -296,20 +294,20 @@
   .modal-close:hover { color: var(--gold); }
 
   .modal-qi {
-    font-size: 42px;
+    font-size: 52px;
     color: var(--gold);
     opacity: 0.6;
     display: block;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     line-height: 1;
   }
 
   .modal-title {
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 4px;
     color: var(--mid);
     text-transform: uppercase;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
 
   .modal input[type="password"] {
@@ -317,16 +315,16 @@
     background: rgba(0,0,0,0.25);
     border: 1px solid rgba(245,217,138,0.22);
     border-radius: 1px;
-    padding: 15px 20px;
+    padding: 18px 24px;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 300;
     color: var(--cream);
     letter-spacing: 8px;
     text-align: center;
     outline: none;
     transition: all 0.3s;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: block;
   }
 
@@ -337,8 +335,8 @@
 
   .modal input::placeholder {
     letter-spacing: 2px;
-    color: rgba(245,217,138,0.18);
-    font-size: 13px;
+    color: rgba(245,217,138,0.2);
+    font-size: 16px;
     font-style: italic;
   }
 
@@ -347,9 +345,9 @@
     background: transparent;
     border: 1px solid rgba(245,217,138,0.28);
     border-radius: 1px;
-    padding: 13px 20px;
+    padding: 16px 20px;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 12px;
+    font-size: 15px;
     letter-spacing: 5px;
     color: var(--gold);
     cursor: pointer;
@@ -365,15 +363,14 @@
   }
 
   .modal-error {
-    font-size: 13px;
+    font-size: 16px;
     font-style: italic;
     color: rgba(255,170,140,0.8);
-    margin-top: 14px;
-    min-height: 20px;
+    margin-top: 16px;
+    min-height: 24px;
     letter-spacing: 0.5px;
   }
 
-  /* Success */
   .success-overlay {
     position: fixed;
     inset: 0;
@@ -393,7 +390,7 @@
   }
 
   .success-text {
-    font-size: 18px;
+    font-size: 22px;
     font-style: italic;
     font-weight: 300;
     color: var(--gold-pale);
@@ -401,9 +398,9 @@
   }
 
   .footer {
-    margin-top: 56px;
+    margin-top: 60px;
     text-align: center;
-    font-size: 11px;
+    font-size: 14px;
     font-style: italic;
     color: var(--dim);
     letter-spacing: 2px;
@@ -411,7 +408,8 @@
   }
 
   @media (max-width: 640px) {
-    .header-title { font-size: 44px; }
+    .header-title { font-size: 54px; }
+    .header-tagline { font-size: 22px; }
     .card { min-width: 100%; max-width: 100%; }
   }
 </style>
@@ -445,7 +443,6 @@
 
   <div class="cards">
 
-    <!-- Concept Document -->
     <a class="card" href="Living_Qi_Concept__standalone___1_.html" target="_blank">
       <div class="card-icon">文</div>
       <p class="card-label">The Vision</p>
@@ -455,7 +452,6 @@
       <p class="card-cta">Open Document &rarr;</p>
     </a>
 
-    <!-- Sizzle Reel -->
     <a class="card" href="https://vimeo.com/1187191900" target="_blank">
       <div class="card-icon">▶</div>
       <p class="card-label">The Film</p>
@@ -466,13 +462,12 @@
       <p class="vimeo-detail">Password &nbsp;<strong>LIVINGQI</strong></p>
     </a>
 
-    <!-- Investor Brief -->
     <div class="card" onclick="openModal()">
       <span class="card-badge">&#128274; Confidential</span>
       <div class="card-icon">◆</div>
       <p class="card-label">For Investors</p>
       <h2 class="card-title">Investor Brief</h2>
-      <p class="card-desc">Budget, financing structure, investment proposition, legacy and impact strategy. Available on request — password protected.</p>
+      <p class="card-desc">Budget, financing structure, investment proposition, legacy and impact strategy. Password protected.</p>
       <div class="card-divider"></div>
       <p class="card-cta">Enter Password &rarr;</p>
     </div>
@@ -486,7 +481,7 @@
 </div>
 
 <script>
-  const PASSWORD = 'LIVINGQI';
+  const PASSWORD = 'TAIHE';
   const BRIEF = 'Living_Qi_Investor_Brief__standalone___8_.html';
 
   function openModal() {
